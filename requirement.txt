@@ -1,0 +1,162 @@
+VideoSDK — Task
+1. Problem Statement
+Build a reusable JavaScript File Explorer SDK and a React application that uses it.
+The SDK should manage a hierarchical file and folder structure, while the React application provides an
+interface to create, organize, search, and manage files and folders.
+This task evaluates your understanding of:
+1 JavaScript SDK design and API development
+2 React component architecture and state management
+3 Recursive rendering and nested data structures
+4 Immutable state updates
+5 Undo/redo and change notifications
+6 React re-render behavior and performance awareness
+Time Limit: 2 days
+Technology: JavaScript, React, and Vite
+2. Example Data Structure
+Start with a file structure similar to the following:
+My Files
+├── Documents
+│   ├── Resume.pdf
+│   └── Project Plan.docx
+├── Images
+│   ├── Photo.png
+│   └── Logo.svg
+└── Notes.txt
+Each file and folder should have a unique identifier, name, type, and parent reference.
+The file system must be simulated in memory. Actual files and folders do not need to be created on the
+computer's disk.
+No backend or database is required.
+3. Features to Implement
+3.1. JavaScript SDK
+Create a standalone JavaScript SDK that manages the file system independently of React.
+Implement public methods for the following functionality:
+1 Retrieve file structure — Return the complete hierarchy of files and folders.
+2 Retrieve an item — Find a particular file or folder using its identifier.
+3 Create a file — Add a new file inside a specified folder.
+4 Create a folder — Add a new folder inside a specified parent folder.
+5 Rename an item — Change the name of an existing file or folder.
+6 Move an item — Move a file or folder to another folder.
+7 Delete an item — Remove a file or folder and handle its descendants.
+8 Search items — Find files and folders across the complete hierarchy.
+9 Undo and redo — Reverse or reapply successful operations.
+10 Subscribe to changes — Notify registered listeners when the file structure changes and allow subscriptions to
+be removed.
+You may choose the method names, parameters, return values, and internal data structure. Document the
+public API and provide usage examples.
+3.2. File and Folder Validation
+The SDK must enforce the following rules:
+1 Every item must have a stable, unique identifier.
+2 Names must be unique within the same folder, ignoring letter casing.
+3 Files cannot contain other files or folders.
+4 A folder cannot be moved inside itself or any of its descendants.
+5 Renaming or moving an item must preserve its identity.
+6 Deleting a folder must correctly handle all its descendants.
+7 Invalid operations must return meaningful errors without corrupting the file structure.
+8 Data returned by the SDK must not allow consumers to modify its internal state directly.
+3.3. Search Functionality
+Implement search across the complete file hierarchy.
+1 Search must be case-insensitive and include nested files and folders.
+2 Allow filtering results by file or folder.
+3 Display each result's name, type, and location in the hierarchy.
+4 Support sorting and pagination.
+5 Handle empty queries and invalid search options.
+6 Ensure search results reflect changes made to the file system.
+7 Searching must not modify the underlying data.
+Search and filtering logic should be implemented in the SDK, while React should handle the search controls
+and display the results.
+3.4. Undo and Redo
+Implement undo and redo functionality for file and folder operations.
+1 Support undoing and redoing creation, renaming, moving, and deletion.
+2 Undoing a folder deletion must restore its complete nested structure.
+3 Failed operations must not create undo-history entries.
+4 Define how redo history behaves when a new operation is performed after undo.
+5 Undo and redo must not leave the file structure in an inconsistent state.
+Document how your undo/redo history works.
+4. React Application
+4.1. Component Structure
+Build a React application that uses the JavaScript SDK for all file-management operations.
+The UI should include:
+1 A recursive file tree displaying files and folders.
+2 Expand/collapse functionality for folders.
+3 Controls to create, rename, move, and delete items.
+4 A search bar with filtering and sorting options.
+5 A details panel displaying the selected item's information.
+6 Undo and redo controls.
+7 An activity panel showing recent changes.
+8 Appropriate error messages for invalid operations.
+Organize the interface into reusable components with clear responsibilities. Avoid implementing the entire
+application in one large component.
+4.2. React State and Hooks
+1 Use React state for UI-specific information, such as the selected item, expanded folders, search input, and
+pending UI actions.
+2 Keep file-management logic and the source of truth inside the SDK.
+3 Update the UI when the SDK reports changes.
+4 Use React hooks appropriately for state management and side effects.
+5 Subscribe to SDK changes and clean up subscriptions when components unmount.
+6 Avoid duplicate subscriptions and unnecessary re-renders.
+7 Ensure effect dependencies are handled correctly.
+8 Handle asynchronous actions, pending states, and errors appropriately.
+9 Ensure expanded folders and selected-item state behave consistently when the tree changes.
+You may introduce custom hooks where they make the React integration more reusable.
+The SDK must remain independent of React and should be usable from a non-React JavaScript application.
+4.3. Rendering Behavior
+Add a console.log inside the recursive tree component to observe re-render behavior.
+Observe the rendering behavior while performing actions such as:
+1 Expanding or collapsing folders.
+2 Selecting a file.
+3 Creating or renaming an item.
+4 Deleting a folder and its descendants.
+5 Updating the search query.
+Structure the component hierarchy and state placement to avoid unnecessary re-renders. Explain any
+optimization techniques used and why they are appropriate.
+Visual polish is not the primary requirement. Focus on component structure, correct behavior, and
+maintainability.
+5. Automated Testing
+Use a suitable JavaScript testing framework, such as Jest or Vitest.
+Write tests covering the following scenarios:
+1 Creating, renaming, moving, and deleting files and folders.
+2 Rejecting duplicate names and invalid operations.
+3 Preventing folders from being moved into their descendants.
+4 Searching nested folders and updating results after mutations.
+5 Undoing and redoing operations, including restoration of nested folders.
+6 Registering and removing SDK subscriptions.
+7 Ensuring returned data cannot modify the SDK's internal state.
+8 React subscription cleanup, UI updates, and error handling.
+Tests should cover both successful operations and important failure scenarios.
+6. Bonus Discussion
+6.1. Atomic Transactions
+Extend the SDK to support executing multiple file-system operations as a single transaction.
+1 All operations must succeed together, or none should be applied.
+2 A failed transaction must not leave partial changes.
+3 Notify subscribers only after a successful commit.
+4 Treat a successful transaction as one undoable operation.
+5 A failed transaction must not create an undo-history entry.
+Design the public API for transactions and document how it works.
+6.2. Multi-Selection and Bulk Operations
+Extend the React application to support selecting multiple files and folders.
+1 Allow users to select and deselect multiple items.
+2 Display the number of selected items.
+3 Support deleting selected items in one operation.
+4 Clear the selection after a successful operation.
+5 Preserve the selection and display an error if the operation fails.
+If you implement atomic transactions, use them to handle bulk deletion as a single transaction.
+7. Technical Constraints
+1 Use JavaScript and React.
+2 Implement the core file-management SDK yourself.
+3 Do not use third-party file-management, event-emitter, or undo/redo libraries for the core functionality.
+4 Do not use React state as the source of truth for file-system data.
+5 Use an in-memory file structure; a backend or database is not required.
+6 Standard libraries may be used for application setup, styling, and testing.
+7 You may choose your own internal architecture, data structures, method names, and API design.
+Document your key design decisions and known limitations.
+8. Submission Requirements
+Submit a Git repository or ZIP file containing:
+1 JavaScript SDK source code.
+2 React application source code.
+3 Instructions for installing dependencies and running the application.
+4 Instructions for running automated tests.
+5 Documentation describing the SDK's public methods, parameters, return values, and usage examples.
+6 A brief explanation of the data model and architecture.
+7 An explanation of the undo/redo implementation.
+8 A list of completed bonus features, if any.
+9 Known limitations and incomplete requirements

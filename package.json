@@ -1,0 +1,11 @@
+{
+  "name": "file-explorer-assignment",
+  "private": true,
+  "description": "In-memory File Explorer SDK (SDK/) and React app (app/)",
+  "scripts": {
+    "setup": "npm --prefix SDK install && npm --prefix app install",
+    "dev": "npm --prefix app run dev",
+    "test": "npm --prefix SDK test && npm --prefix app test",
+    "lint": "npm --prefix app run lint"
+  }
+}

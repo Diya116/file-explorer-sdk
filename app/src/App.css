@@ -1,0 +1,30 @@
+.app { max-width: 1200px; margin: 0 auto; padding: 16px; }
+header { display: flex; justify-content: space-between; align-items: center; }
+h1 { font-size: 1.4rem; margin: 0 0 12px; }
+main { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 12px; align-items: start; }
+.column { display: flex; flex-direction: column; gap: 12px; }
+.panel { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 12px; }
+.panel h3 { margin: 0 0 8px; font-size: 1rem; }
+.toolbar-row { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
+.toolbar-row input:not([type]) { flex: 1; min-width: 100px; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+.undo-redo { display: flex; gap: 6px; }
+.error { background: #fde8e8; color: #9b1c1c; border: 1px solid #f5b5b5; border-radius: 6px; padding: 8px 12px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+.error-text { color: #9b1c1c; }
+.muted { color: #777; }
+.tree, .tree ul { list-style: none; margin: 0; padding: 0; }
+.row { display: flex; align-items: center; gap: 4px; padding: 2px 4px; border-radius: 4px; }
+.row:hover { background: #f0f0f0; }
+.row.selected, .row.selected:hover { background: #dbeafe; }
+.twisty { border: none; background: none; width: 20px; padding: 0; font-size: 0.7rem; }
+.spacer { display: inline-block; width: 20px; }
+.label { cursor: pointer; flex: 1; user-select: none; }
+dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 0; }
+dt { font-weight: 600; }
+dd { margin: 0; word-break: break-all; }
+.mono { font-family: monospace; font-size: 0.8rem; }
+.results, .activity { list-style: none; padding: 0; margin: 0 0 8px; }
+.results li, .activity li { display: flex; flex-direction: column; padding: 4px 0; border-bottom: 1px solid #eee; }
+.link { border: none; background: none; text-align: left; padding: 0; color: #1d4ed8; }
+small, time { color: #777; font-size: 0.75rem; }

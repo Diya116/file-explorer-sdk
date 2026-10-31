@@ -53,3 +53,5 @@ npm run lint      # lint the app
 - **Bonus 6.1 — atomic transactions:** `fs.transaction(fn)`; all-or-nothing, one notification, one undo step.
 - **Bonus 6.2 — multi-selection and bulk delete:** checkboxes, selected count, one-transaction delete.
 - Automated tests for the SDK and the app (Vitest).
+
+  [![Project Demo](https://www.youtube.com/watch?v=K4qQpPZLtu0)
